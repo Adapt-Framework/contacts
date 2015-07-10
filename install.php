@@ -107,7 +107,19 @@ $model = new \model_contact_email_type();
 $model->bundle_name = 'contacts';
 $model->label = 'Office';
 $model->save();
-    
+
+
+/* Add the address types */
+$model = new model_contact_address_type();
+$model->bundle_name = 'contacts';
+$model->label = 'Home';
+$model->save();
+
+$model = new model_contact_address_type();
+$model->bundle_name = 'contacts';
+$model->label = 'Office';
+$model->save();
+
 
 ///* Lets create the form */
 //$form = new \extensions\forms\model_form();

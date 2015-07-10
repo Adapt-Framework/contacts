@@ -11,7 +11,7 @@ $adapt = $GLOBALS['adapt'];
 /*
  * Include  css & javascript
  */
-//$adapt->dom->head->add(new adapt\html_link(array('type' => 'text/css', 'rel' => 'stylesheet', 'href' => '/adapt/extensions/contacts/static/css/contacts.css')));
+$adapt->dom->head->add(new adapt\html_link(array('type' => 'text/css', 'rel' => 'stylesheet', 'href' => '/adapt/extensions/contacts/static/css/contacts.css')));
 $adapt->dom->head->add(new adapt\html_script(array('type' => 'text/javascript', 'src' => '/adapt/extensions/contacts/static/js/contacts.js')));
 
 

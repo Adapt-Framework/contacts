@@ -14,6 +14,89 @@
             <bundle>advanced_data_types</bundle>
             <bundle>locales</bundle>
             <bundle>forms</bundle>
+            <bundle>bootstrap_views</bundle>
+            <bundle>font_awesome_views</bundle>
         </depends_on>
+        <settings>
+            <category name="Contacts">
+                <setting>
+                    <name>contacts.show_country_id_field</name>
+                    <label>Should the country field be shown on contacts?</label>
+                    <allowed_values>
+                        <value>Yes</value>
+                        <value>No</value>
+                    </allowed_values>
+                    <default_value>Yes</default_value>
+                </setting>
+                <setting>
+                    <name>contacts.default_country_name</name>
+                    <label>If the country field is hidden, what should the country be defaulted to? (name)</label>
+                    <default_value>United Kingdom</default_value>
+                </setting>
+                <setting>
+                    <name>contacts.show_title</name>
+                    <label>Should the title field be displayed?</label>
+                    <allowed_values>
+                        <value>Yes</value>
+                        <value>No</value>
+                    </allowed_values>
+                    <default_value>Yes</default_value>
+                </setting>
+                <setting>
+                    <name>contacts.show_middle_names</name>
+                    <label>Should the middle names field be displayed?</label>
+                    <allowed_values>
+                        <value>Yes</value>
+                        <value>No</value>
+                    </allowed_values>
+                    <default_value>Yes</default_value>
+                </setting>
+                <setting>
+                    <name>contacts.show_nickname</name>
+                    <label>Should the nickname field be displayed?</label>
+                    <allowed_values>
+                        <value>Yes</value>
+                        <value>No</value>
+                    </allowed_values>
+                    <default_value>Yes</default_value>
+                </setting>
+                <setting>
+                    <name>contacts.show_date_of_birth</name>
+                    <label>Should the date of birth field be displayed?</label>
+                    <allowed_values>
+                        <value>Yes</value>
+                        <value>No</value>
+                    </allowed_values>
+                    <default_value>Yes</default_value>
+                </setting>
+                <setting>
+                    <name>contacts.date_of_birth_mandatory</name>
+                    <label>Should the data of birth be mandatory?</label>
+                    <allowed_values>
+                        <value>Yes</value>
+                        <value>No</value>
+                    </allowed_values>
+                    <default_value>Yes</default_value>
+                </setting>
+                <setting>
+                    <name>contacts.show_phone</name>
+                    <label>Should the phone number field be displayed?</label>
+                    <allowed_values>
+                        <value>Yes</value>
+                        <value>No</value>
+                    </allowed_values>
+                    <default_value>Yes</default_value>
+                </setting>
+                <setting>
+                    <name>contacts.phone_mandatory</name>
+                    <label>Should the phone number be mandatory?</label>
+                    <allowed_values>
+                        <value>Yes</value>
+                        <value>No</value>
+                    </allowed_values>
+                    <default_value>Yes</default_value>
+                </setting>
+            </category>
+        </settings>
     </bundle>
 </adapt_framework>

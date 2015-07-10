@@ -1,0 +1,44 @@
+.phone-group .new.desc,
+.email-group .new.desc,
+.address-group .new.desc{
+    font-size: 1.4em;
+}
+
+.phone-group .new, .phone-group .new a,
+.email-group .new, .email-group .new a,
+.address-group .new, .address-group .new a{
+    color: green;
+}
+
+.phone-group .new a:hover,
+.email-group .new a:hover,
+.address-group .new a:hover{
+    color: black;
+}
+
+.phone-group .input-group[class*=col-],
+.email-group .input-group[class*=col-]{
+    float: left;
+}
+
+.phone-group .input-group,
+.email-group .input-group{
+    margin-bottom: 5px;
+}
+
+.phone-group .phone-input-set a.phone-remove,
+.email-group .email-input-set a.email-remove,
+.address-group .address-input-set a.address-remove{
+    color: red;
+}
+
+.phone-group .phone-input-set a.phone-remove:hover,
+.email-group .email-input-set a.email-remove:hover,
+.address-group .address-input-set a.address-remove:hover{
+    color: black;
+}
+
+.phone-group .input-group-btn button,
+.email-group .input-group-btn button{
+    width: 85px;
+}
