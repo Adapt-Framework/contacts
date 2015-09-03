@@ -7,7 +7,25 @@ $adapt = $GLOBALS['adapt'];
 
 $sql = $adapt->data_source->sql;
 
+$sql->errors(true);
+
 /* Create the tables */
+$sql->create_table('contact')
+    ->add('contact_id', 'bigint')
+    ->add('country_id', 'bigint')
+    ->add('title', 'varchar(32)')
+    ->add('forename', 'varchar(64)')
+    ->add('middle_names', 'varchar(64)')
+    ->add('surname', 'varchar(64)')
+    ->add('nickname', 'varchar(32)')
+    ->add('date_of_birth', 'date')
+    ->add('date_created', 'datetime')
+    ->add('date_modified', 'timestamp')
+    ->add('date_deleted', 'datetime')
+    ->primary_key('contact_id')
+    ->foreign_key('country_id', 'country', 'country_id')
+    ->execute();
+    
 $sql->create_table('contact')
     ->add('contact_id', 'bigint')
     ->add('country_id', 'bigint')
