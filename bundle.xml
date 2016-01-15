@@ -2,21 +2,264 @@
 <adapt_framework>
     <bundle>
         <name>contacts</name>
-        <label>Contacts</label>
+        <label>Adapt Contacts</label>
         <type>extension</type>
         <version>1.0.0</version>
-        <namespace>/extensions/contacts</namespace>
+        <namespace>\adapt\contacts</namespace>
         <description>Provides models and views for personal contact information.</description>
         <copyright>2015 Adapt Framework</copyright>
         <license>MIT</license>
         <website>http://www.adaptframework.com/documentation/extensions/contacts</website>
         <depends_on>
-            <bundle>advanced_data_types</bundle>
-            <bundle>locales</bundle>
-            <bundle>forms</bundle>
-            <bundle>bootstrap_views</bundle>
-            <bundle>font_awesome_views</bundle>
+            <bundle>
+                <name>advanced_data_types</name>
+            </bundle>
+            <bundle>
+                <name>locales</name>
+            </bundle>
+            <bundle>
+                <name>forms</name>
+                <version>1.0</version>
+            </bundle>
+            <bundle>
+                <name>bootstrap_views</name>
+                <version>1.0</version>
+            </bundle>
+            <bundle>
+                <name>font_awesome_views</name>
+                <version>1.0</version>
+            </bundle>
         </depends_on>
+        <schema>
+            <add>
+                <table name="contact">
+                    <field name="contact_id" key="primary" auto-increment="Yes">
+                        <label>Contact #</label>
+                        <data_type>bigint</data_type>
+                    </field>
+                    <field name="country_id" key="foreign" referenced-table-name="country" referenced-field-name="country_id">
+                        <label>Country</label>
+                        <data_type>bigint</data_type>
+                        <lookup_table>country</lookup_table>
+                    </field>
+                    <field name="title">
+                        <label>Title</label>
+                        <data_type>varchar</data_type>
+                        <max_length>32</max_length>
+                    </field>
+                    <field name="forename">
+                        <label>Forename</label>
+                        <data_type>name</data_type>
+                        <max_length>64</max_length>
+                    </field>
+                    <field name="middle_names">
+                        <label>Middle name(s)</label>
+                        <data_type>name</data_type>
+                        <max_length>64</max_length>
+                    </field>
+                    <field name="surname">
+                        <label>Surname</label>
+                        <data_type>name</data_type>
+                        <max_length>64</max_length>
+                    </field>
+                    <field name="nickname">
+                        <label>Nickname</label>
+                        <data_type>varchar</data_type>
+                        <max_length>32</max_length>
+                    </field>
+                    <field name="date_of_birth">
+                        <label>Date of birth</label>
+                        <data_type>date</data_type>
+                    </field>
+                </table>
+                <table name="contact_phone">
+                    <field name="contact_phone_id" key="primary" auto-increment="Yes">
+                        <label>Contact phone #</label>
+                        <data_type>bigint</data_type>
+                    </field>
+                    <field name="contact_id" key="foreign" referenced-table-name="contact" referenced-field-name="contact_id">
+                        <label>Contact #</label>
+                        <data_type>bigint</data_type>
+                    </field>
+                    <field name="country_phone_data_type_id" key="foreign" referenced-table-name="country_phone_data_type" referenced-field-name="country_phone_data_type_id">
+                        <label>Data type</label>
+                        <data_type>bigint</data_type>
+                        <lookup_table>country_phone_data_type</lookup_table>
+                    </field>
+                    <field name="priority">
+                        <label>Priority</label>
+                        <data_type>int</data_type>
+                    </field>
+                    <field name="phone_number">
+                        <label>Phone number</label>
+                        <data_type>varchar</data_type>
+                        <max_length>64</max_length>
+                    </field>
+                </table>
+                <table name="contact_address_type">
+                    <field name="contact_address_type_id" key="primary" auto-increment="Yes">
+                        <label>Address type #</label>
+                        <data_type>bigint</data_type>
+                    </field>
+                    <field name="bundle_version_id" key="foreign" referenced-table-name="bundle_version" referenced-field-name="bundle_version_id">
+                        <label>Bundle #</label>
+                        <description>The bundle that created this record</description>
+                        <data_type>bigint</data_type>
+                    </field>
+                    <field name="name" index="Yes" index-size="32">
+                        <label>Name</label>
+                        <data_type>varchar</data_type>
+                        <max_length>64</max_length>
+                        <nullable>No</nullable>
+                    </field>
+                    <field name="label">
+                        <label>Label</label>
+                        <data_type>varchar</data_type>
+                        <max_length>128</max_length>
+                        <nullable>No</nullable>
+                    </field>
+                    <record>
+                        <name>home</name>
+                        <label>Home</label>
+                    </record>
+                    <record>
+                        <name>office</name>
+                        <label>Office</label>
+                    </record>
+                </table>
+                <table name="contact_address">
+                    <field name="contact_address_id" key="primary" auto-increment="Yes">
+                        <label>Address #</label>
+                        <data_type>bigint</data_type>
+                    </field>
+                    <field name="contact_id" key="foreign" referenced-table-name="contact" referenced-field-name="contact_id">
+                        <label>Contact #</label>
+                        <data_type>bigint</data_type>
+                    </field>
+                    <field name="contact_address_type_id" key="foreign" referenced-table-name="contact_address_type" referenced-field-name="contact_address_type_id">
+                        <label>Address type</label>
+                        <data_type>bigint</data_type>
+                        <nullable>No</nullable>
+                        <lookup_table>contact_address_type</lookup_table>
+                    </field>
+                    <field name="priority">
+                        <label>Priority</label>
+                        <data_type>int</data_type>
+                    </field>
+                    <field name="country_id" key="foreign" referenced-table-name="country" referenced-field-name="country_id">
+                        <label>Country</label>
+                        <data_type>bigint</data_type>
+                        <lookup_table>country</lookup_table>
+                    </field>
+                    <field name="address_1">
+                        <label>Address 1</label>
+                        <data_type>varchar</data_type>
+                        <max_length>128</max_length>
+                    </field>
+                    <field name="address_2">
+                        <label>Address 2</label>
+                        <data_type>varchar</data_type>
+                        <max_length>128</max_length>
+                    </field>
+                    <field name="address_3">
+                        <label>Address 3</label>
+                        <data_type>varchar</data_type>
+                        <max_length>128</max_length>
+                    </field>
+                    <field name="address_4">
+                        <label>Address 4</label>
+                        <data_type>varchar</data_type>
+                        <max_length>128</max_length>
+                    </field>
+                    <field name="address_5">
+                        <label>Address 5</label>
+                        <data_type>varchar</data_type>
+                        <max_length>128</max_length>
+                    </field>
+                    <field name="address_6">
+                        <label>Address 6</label>
+                        <data_type>varchar</data_type>
+                        <max_length>128</max_length>
+                    </field>
+                    <field name="address_7">
+                        <label>Address 7</label>
+                        <data_type>varchar</data_type>
+                        <max_length>128</max_length>
+                    </field>
+                    <field name="address_8">
+                        <label>Address 8</label>
+                        <data_type>varchar</data_type>
+                        <max_length>128</max_length>
+                    </field>
+                    <field name="address_9">
+                        <label>Address 9</label>
+                        <data_type>varchar</data_type>
+                        <max_length>128</max_length>
+                    </field>
+                    <field name="address_10">
+                        <label>Address 10</label>
+                        <data_type>varchar</data_type>
+                        <max_length>128</max_length>
+                    </field>
+                </table>
+                <table name="contact_email_type">
+                    <field name="contact_email_type_id" key="primary" auto-increment="Yes">
+                        <label>Email type #</label>
+                        <data_type>bigint</data_type>
+                    </field>
+                    <field name="bundle_version_id" key="foreign" referenced-table-name="bundle_version" referenced-field-name="bundle_version_id">
+                        <label>Bundle</label>
+                        <description>The bundle that created this record.</description>
+                        <data_type>bigint</data_type>
+                    </field>
+                    <field name="name" index="Yes" index-size="32">
+                        <label>Name</label>
+                        <data_type>varchar</data_type>
+                        <max_length>64</max_length>
+                        <nullable>No</nullable>
+                    </field>
+                    <field name="label">
+                        <label>Label</label>
+                        <data_type>varchar</data_type>
+                        <max_length>128</max_length>
+                        <nullable>No</nullable>
+                    </field>
+                    <record>
+                        <name>home</name>
+                        <label>Home</label>
+                    </record>
+                    <record>
+                        <name>office</name>
+                        <label>Office</label>
+                    </record>
+                </table>
+                <table name="contact_email">
+                    <field name="contact_email_id" key="primary" auto-increment="Yes">
+                        <label>Contact email #</label>
+                        <data_type>bigint</data_type>
+                    </field>
+                    <field name="contact_id" key="foreign" referenced-table-name="contact" referenced-field-name="contact_id">
+                        <label>Contact #</label>
+                        <data_type>bigint</data_type>
+                    </field>
+                    <field name="contact_email_type_id" key="foreign" referenced-table-name="contact_email_type" referenced-field-name="contact_email_type_id">
+                        <label>Email type</label>
+                        <data_type>bigint</data_type>
+                        <nullable>No</nullable>
+                        <lookup_table>contact_email_type</lookup_table>
+                    </field>
+                    <field name="priority">
+                        <label>Priority</label>
+                        <data_type>int</data_type>
+                    </field>
+                    <field name="email">
+                        <label>Email</label>
+                        <data_type>email_address</data_type>
+                        <nullable>No</nullable>
+                    </field>
+                </table>
+            </add>
+        </schema>
         <settings>
             <category name="Contacts">
                 <setting>

@@ -26,21 +26,21 @@ $sql->create_table('contact')
     ->foreign_key('country_id', 'country', 'country_id')
     ->execute();
     
-$sql->create_table('contact')
-    ->add('contact_id', 'bigint')
-    ->add('country_id', 'bigint')
-    ->add('title', 'varchar(32)')
-    ->add('forename', 'name')
-    ->add('middle_names', 'name')
-    ->add('surname', 'name')
-    ->add('nickname', 'varchar(32)')
-    ->add('date_of_birth', 'date')
-    ->add('date_created', 'datetime')
-    ->add('date_modified', 'timestamp')
-    ->add('date_deleted', 'datetime')
-    ->primary_key('contact_id')
-    ->foreign_key('country_id', 'country', 'country_id')
-    ->execute();
+//$sql->create_table('contact')
+//    ->add('contact_id', 'bigint')
+//    ->add('country_id', 'bigint')
+//    ->add('title', 'varchar(32)')
+//    ->add('forename', 'name')
+//    ->add('middle_names', 'name')
+//    ->add('surname', 'name')
+//    ->add('nickname', 'varchar(32)')
+//    ->add('date_of_birth', 'date')
+//    ->add('date_created', 'datetime')
+//    ->add('date_modified', 'timestamp')
+//    ->add('date_deleted', 'datetime')
+//    ->primary_key('contact_id')
+//    ->foreign_key('country_id', 'country', 'country_id')
+//    ->execute();
 
 $sql->create_table('contact_phone')
     ->add('contact_phone_id', 'bigint')
@@ -59,6 +59,7 @@ $sql->create_table('contact_phone')
 $sql->create_table('contact_address_type')
     ->add('contact_address_type_id', 'bigint')
     ->add('bundle_name', 'varchar(128)')
+    ->add('name', 'varchar(64)', false)
     ->add('label', 'varchar(128)', false)
     ->add('date_created', 'datetime')
     ->add('date_modified', 'timestamp')
@@ -94,6 +95,7 @@ $sql->create_table('contact_address')
 $sql->create_table('contact_email_type')
     ->add('contact_email_type_id', 'bigint')
     ->add('bundle_name', 'varchar(128)')
+    ->add('name', 'varchar(64)', false)
     ->add('label', 'varchar(128)', false)
     ->add('date_created', 'datetime')
     ->add('date_modified', 'timestamp')
@@ -118,11 +120,13 @@ $sql->create_table('contact_email')
 /* Add the email types */
 $model = new \model_contact_email_type();
 $model->bundle_name = 'contacts';
+$model->name = 'home';
 $model->label = 'Home';
 $model->save();
 
 $model = new \model_contact_email_type();
 $model->bundle_name = 'contacts';
+$model->name = 'office';
 $model->label = 'Office';
 $model->save();
 
@@ -130,11 +134,13 @@ $model->save();
 /* Add the address types */
 $model = new model_contact_address_type();
 $model->bundle_name = 'contacts';
+$model->name = 'home';
 $model->label = 'Home';
 $model->save();
 
 $model = new model_contact_address_type();
 $model->bundle_name = 'contacts';
+$model->name = 'office';
 $model->label = 'Office';
 $model->save();
 

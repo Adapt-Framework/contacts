@@ -1,18 +1,18 @@
 <?php
 
-namespace extensions\contacts{
+namespace adapt\contacts{
     
     /* Prevent direct access */
     defined('ADAPT_STARTED') or die;
     
-    class view_form_page_contact extends \frameworks\adapt\view{
+    class view_form_page_contact extends \adapt\view{
         
         public function __construct($data = array(), $title = 'Contact information', $description = '', $step_label = 'Contact info', $step_description = ''){
             parent::__construct('div');
             $this->add_class('form_page col-xs-12');
             
-            if (!is_null($title)) $this->add(new \extensions\bootstrap_views\view_h2($title));
-            if (!is_null($description)) $this->add(new \extensions\bootstrap_views\view_p($description));
+            if (!is_null($title)) $this->add(new \bootstrap_views\view_h2($title));
+            if (!is_null($description)) $this->add(new \bootstrap_views\view_p($description));
             if (!is_null($step_label)) $this->attr('data-step-label', $step_label);
             if (!is_null($step_description)) $this->attr('data-step-description', $step_description);
             
@@ -20,7 +20,7 @@ namespace extensions\contacts{
             
             $this->add(new html_div(array('class' => 'error-panel')));
             
-            $section = new \extensions\forms\view_form_page_section('Personal information');
+            $section = new \adapt\forms\view_form_page_section('Personal information');
             $section->add_class('clearfix');
             $this->add($section);
             
@@ -34,7 +34,7 @@ namespace extensions\contacts{
                 $sql->select('*')
                     ->from('country', 'c')
                     ->where(
-                        new \frameworks\adapt\sql_condition($this->data_source->sql('c.date_deleted'), 'is', $this->data_source->sql('null'))
+                        new \adapt\sql_condition($this->data_source->sql('c.date_deleted'), 'is', $this->data_source->sql('null'))
                     )
                     ->order_by('c.label');
                 
@@ -58,14 +58,14 @@ namespace extensions\contacts{
                         $sql->select('country_id')
                             ->from('country')
                             ->where(
-                                new \frameworks\adapt\sql_and(
-                                    new \frameworks\adapt\sql_condition(
-                                        new \frameworks\adapt\sql('date_deleted'),
+                                new \adapt\sql_and(
+                                    new \adapt\sql_condition(
+                                        new \adapt\sql('date_deleted'),
                                         'is',
-                                        new \frameworks\adapt\sql('null')
+                                        new \adapt\sql('null')
                                     ),
-                                    new \frameworks\adapt\sql_condition(
-                                        new \frameworks\adapt\sql('label'),
+                                    new \adapt\sql_condition(
+                                        new \adapt\sql('label'),
                                         '=',
                                         $label
                                     )
@@ -85,8 +85,8 @@ namespace extensions\contacts{
                 $country_id = $value;
                 
                 $section->add(
-                    new \extensions\bootstrap_views\view_cell(
-                        new \extensions\forms\view_field_select(
+                    new \bootstrap_views\view_cell(
+                        new \adapt\forms\view_field_select(
                             array(
                                 'name' => 'contact[country_id]',
                                 'mandatory' => 'Yes',
@@ -113,14 +113,14 @@ namespace extensions\contacts{
                             ->select('country_id')
                             ->from('country')
                             ->where(
-                                new \frameworks\adapt\sql_and(
-                                    new \frameworks\adapt\sql_condition(
-                                        new \frameworks\adapt\sql('date_deleted'),
+                                new \adapt\sql_and(
+                                    new \adapt\sql_condition(
+                                        new \adapt\sql('date_deleted'),
                                         'is',
-                                        new \frameworks\adapt\sql('null')
+                                        new \adapt\sql('null')
                                     ),
-                                    new \frameworks\adapt\sql_condition(
-                                        new \frameworks\adapt\sql('label'),
+                                    new \adapt\sql_condition(
+                                        new \adapt\sql('label'),
                                         '=',
                                         $label
                                     )
@@ -144,8 +144,8 @@ namespace extensions\contacts{
             /* Title field */
             if (strtolower($this->setting('contacts.show_title')) == 'yes'){
                 $section->add(
-                    new \extensions\bootstrap_views\view_cell(
-                        new \extensions\forms\view_field_select(
+                    new \bootstrap\views\view_cell(
+                        new \forms\view_field_select(
                             array(
                                 'name' => 'contact[title]',
                                 'label' => 'Title',
@@ -160,8 +160,8 @@ namespace extensions\contacts{
             
             /* Forename */
             $section->add(
-                new \extensions\bootstrap_views\view_cell(
-                    new \extensions\forms\view_field_input(
+                new \bootstrap\views\view_cell(
+                    new \adapt\forms\view_field_input(
                         array(
                             'name' => 'contact[forename]',
                             'label' => 'Forename',
@@ -178,8 +178,8 @@ namespace extensions\contacts{
             /* Middle names */
             if (strtolower($this->setting('contacts.show_middle_names')) == 'yes'){
                 $section->add(
-                    new \extensions\bootstrap_views\view_cell(
-                        new \extensions\forms\view_field_input(
+                    new \bootstrap\views\view_cell(
+                        new \adapt\forms\view_field_input(
                             array(
                                 'name' => 'contact[middle_names]',
                                 'label' => 'Middle name(s)',
@@ -195,8 +195,8 @@ namespace extensions\contacts{
             
             /* Surname */
             $section->add(
-                new \extensions\bootstrap_views\view_cell(
-                    new \extensions\forms\view_field_input(
+                new \bootstrap\views\view_cell(
+                    new \adapt\forms\view_field_input(
                         array(
                             'name' => 'contact[surname]',
                             'label' => 'Surname',
@@ -213,8 +213,8 @@ namespace extensions\contacts{
             /* Nickname */
             if (strtolower($this->setting('contacts.show_nickname')) == 'yes'){
                 $section->add(
-                    new \extensions\bootstrap_views\view_cell(
-                        new \extensions\forms\view_field_input(
+                    new \bootstrap\views\view_cell(
+                        new \adapt\forms\view_field_input(
                             array(
                                 'name' => 'contact[nickname]',
                                 'label' => 'Known as',
@@ -249,13 +249,13 @@ namespace extensions\contacts{
                     $values['placeholder_label'] = $format;
                 }
                 
-                $section->add(new \extensions\bootstrap_views\view_cell(new \extensions\forms\view_field_input($values), 12, 6, 4, 3));
+                $section->add(new \bootstrap\views\view_cell(new \adapt\forms\view_field_input($values), 12, 6, 4, 3));
             }
             
             /*
              * Add contact information section
              */
-            $section = new \extensions\forms\view_form_page_section('Contact information');
+            $section = new \adapt\forms\view_form_page_section('Contact information');
             $section->add_class('clearfix');
             $this->add($section);
             
@@ -268,12 +268,12 @@ namespace extensions\contacts{
                         ->from('country_phone_data_type', 'c')
                         ->join('data_type', 'd', 'data_type_id')
                         ->where(
-                            new \frameworks\adapt\sql_and(
-                                new \frameworks\adapt\sql_condition(
-                                    new \frameworks\adapt\sql('c.country_id'), '=', $country_id
+                            new \adapt\sql_and(
+                                new \adapt\sql_condition(
+                                    new \adapt\sql('c.country_id'), '=', $country_id
                                 ),
-                                new \frameworks\adapt\sql_condition(
-                                    new \frameworks\adapt\sql('c.date_deleted'), 'is', new \frameworks\adapt\sql('null')
+                                new \adapt\sql_condition(
+                                    new \adapt\sql('c.date_deleted'), 'is', new \frameworks\adapt\sql('null')
                                 )
                             )
                         )
@@ -297,22 +297,22 @@ namespace extensions\contacts{
                     if (strtolower($this->setting('contacts.phone_mandatory')) == 'yes') $values['mandatory'] = 'Yes';
                     
                     
-                    $type_field = new \extensions\forms\view_field_select($values);
+                    $type_field = new \adapt\forms\view_field_select($values);
                     
                     //$section->add(
                     //    new \extensions\bootstrap_views\view_cell($field, 12, 6, 4, 3)
                     //);
                     
-                    $phone_cell = new \extensions\bootstrap_views\view_row();
+                    $phone_cell = new \bootstrap\views\view_row();
                     $phone_cell->add_class('field-input contacts phone-group form-group');
-                    $section->add(new \extensions\bootstrap_views\view_cell($phone_cell, 12, 6, 4, 3));
+                    $section->add(new \bootstrap\views\view_cell($phone_cell, 12, 6, 4, 3));
                     
                     $phone_cell->add(new html_label('Phone', array('class' => 'col-xs-12')));
                     
                     $phone_cell->add(new html_div(array('class' => 'phone-content')));
                     
-                    $new_label = new \extensions\bootstrap_views\view_cell('Add phone number', 10);
-                    $new_icon = new \extensions\bootstrap_views\view_cell(new html_a(new \extensions\font_awesome_views\view_icon('plus-circle', \extensions\font_awesome_views\view_icon::LARGE2X), array('href' => 'javascript: void(0);', 'title' => 'Add new phone number', 'class' => 'add-phone')), 2);
+                    $new_label = new \bootstrap\views\view_cell('Add phone number', 10);
+                    $new_icon = new \bootstrap\views\view_cell(new html_a(new \font_awesome\views\view_icon('plus-circle', \font_awesome\views\view_icon::LARGE2X), array('href' => 'javascript: void(0);', 'title' => 'Add new phone number', 'class' => 'add-phone')), 2);
                     
                     $new_label->add_class('new desc');
                     $new_icon->add_class('new icon');
@@ -371,16 +371,16 @@ namespace extensions\contacts{
             //    new \extensions\bootstrap_views\view_cell($field, 12, 6, 4, 3)
             //);
             
-            $email_cell = new \extensions\bootstrap_views\view_row();
+            $email_cell = new \bootstrap\views\view_row();
             $email_cell->add_class('field-input contacts email-group form-group');
-            $section->add(new \extensions\bootstrap_views\view_cell($email_cell, 12, 6, 4, 3));
+            $section->add(new \bootstrap\views\view_cell($email_cell, 12, 6, 4, 3));
             
             $email_cell->add(new html_label('Email', array('class' => 'col-xs-12')));
             
             $email_cell->add(new html_div(array('class' => 'email-content')));
             
-            $new_label = new \extensions\bootstrap_views\view_cell('Add email address', 10);
-            $new_icon = new \extensions\bootstrap_views\view_cell(new html_a(new \extensions\font_awesome_views\view_icon('plus-circle', \extensions\font_awesome_views\view_icon::LARGE2X), array('href' => 'javascript: void(0);', 'title' => 'Add new email address', 'class' => 'add-email')), 2);
+            $new_label = new \bootstrap\views\view_cell('Add email address', 10);
+            $new_icon = new \bootstrap\views\view_cell(new html_a(new \font_awesome\views\view_icon('plus-circle', \font_awesome\views\view_icon::LARGE2X), array('href' => 'javascript: void(0);', 'title' => 'Add new email address', 'class' => 'add-email')), 2);
             
             $new_label->add_class('new desc');
             $new_icon->add_class('new icon');
@@ -396,7 +396,7 @@ namespace extensions\contacts{
             /*
              * Add address information
              */
-            $section = new \extensions\forms\view_form_page_section('Address');
+            $section = new \adapt\forms\view_form_page_section('Address');
             $section->add_class('clearfix');
             $this->add($section);
             
@@ -433,10 +433,10 @@ namespace extensions\contacts{
                 $sql->select(array('id' => 'contact_address_type_id', 'name' => 'label'))
                     ->from('contact_address_type')
                     ->where(
-                        new \frameworks\adapt\sql_condition(
-                            new \frameworks\adapt\sql('date_deleted'),
+                        new \adapt\sql_condition(
+                            new \adapt\sql('date_deleted'),
                             'is',
-                            new \frameworks\adapt\sql('null')
+                            new \adapt\sql('null')
                         )
                     )
                     ->order_by('label');
@@ -449,7 +449,7 @@ namespace extensions\contacts{
                     $types[$result['id']] = $result['name'];
                 }
                 
-                $field = new \extensions\forms\view_field_select(
+                $field = new \adapt\forms\view_field_select(
                     array(
                         'name' => 'contact_address[contact_address_type_id][]',
                         'mandatory' => 'Yes',
@@ -464,7 +464,7 @@ namespace extensions\contacts{
                 //$control = $field->find('.form-control')->detach();
                 //$field->add(new html_div($control->get(0), array('class' => 'col-sm-8')));
                 
-                $section->add(new \extensions\bootstrap_views\view_cell($field, 12, 6, 4, 3));
+                $section->add(new \bootstrap\views\view_cell($field, 12, 6, 4, 3));
                 
                 /* Lets get a list of address fields used by this  */
                 $sql = $this->data_source->sql;
@@ -485,15 +485,15 @@ namespace extensions\contacts{
                     'data_type', 'd', 'data_type_id'
                 )
                 ->where(
-                    new \frameworks\adapt\sql_and(
-                        new \frameworks\adapt\sql_condition(
-                            new \frameworks\adapt\sql('c.country_id'), '=', $country_id
+                    new \adapt\sql_and(
+                        new \adapt\sql_condition(
+                            new \adapt\sql('c.country_id'), '=', $country_id
                         ),
-                        new \frameworks\adapt\sql_condition(
-                            new \frameworks\adapt\sql('c.date_deleted'), 'is', new \frameworks\adapt\sql('null')
+                        new \adapt\sql_condition(
+                            new \adapt\sql('c.date_deleted'), 'is', new \adapt\sql('null')
                         ),
-                        new \frameworks\adapt\sql_condition(
-                            new \frameworks\adapt\sql('d.date_deleted'), 'is', new \frameworks\adapt\sql('null')
+                        new \adapt\sql_condition(
+                            new \adapt\sql('d.date_deleted'), 'is', new \adapt\sql('null')
                         )
                     )
                 )
@@ -515,8 +515,8 @@ namespace extensions\contacts{
                     if (isset($result['unformatter'])) $field_options['unformatter'] = $result['unformatter'];
                     if (isset($result['max_length'])) $field_options['max_length'] = $result['max_length'];
                     
-                    $field = new \extensions\forms\view_field_input($field_options);
-                    $section->add(new \extensions\bootstrap_views\view_cell($field, 12, 6, 4, 3));
+                    $field = new \adapt\forms\view_field_input($field_options);
+                    $section->add(new \bootstrap\views\view_cell($field, 12, 6, 4, 3));
                     
                     //$field->find('label')->add_class('col-sm-4');
                     //$control = $field->find('.form-control')->detach();
