@@ -27,19 +27,39 @@ namespace adapt\contacts{
         }
         
         /*
-         * Properties
+         * Properties (Exportable)
          */
-        public function pget_name(){
+        public function mget_name(){
             return $this->forename . " " . $this->surname;
         }
         
-        public function pget_forenames(){
+        public function mget_forenames(){
             return $this->forename . " " . $this->middle_names;
         }
         
-        public function pget_full_name(){
+        public function mget_full_name(){
             return $this->title . " " . $this->forenames . " " . $this->surname;
         }
+        
+        public function mget_email(){
+            $output = null;
+            
+            if ($this->is_loaded){
+                $children = $this->get();
+                
+                foreach($children as $child){
+                    if ($child instanceof \adapt\model && $child->table_name == "contact_email"){
+                        return $child->email;
+                    }
+                }
+            }
+            
+            return $output;
+        }
+        
+        /*
+         * Properties (Local)
+         */
         
         
     }
