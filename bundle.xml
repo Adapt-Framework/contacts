@@ -7,7 +7,7 @@
         <version>1.0.0</version>
         <namespace>\adapt\contacts</namespace>
         <description>Provides models and views for personal contact information.</description>
-        <copyright>2015 Adapt Framework</copyright>
+        <copyright>2016 Adapt Framework</copyright>
         <license>MIT</license>
         <website>http://www.adaptframework.com/documentation/extensions/contacts</website>
         <depends_on>
@@ -51,6 +51,10 @@
                         <label>Country</label>
                         <data_type>bigint</data_type>
                         <lookup_table>country</lookup_table>
+                    </field>
+                    <field name="language_id" key="foreign" referenced-table-name="language" referenced-field-name="language_id">
+                        <label>Language #</label>
+                        <data_type>bigint</data_type>
                     </field>
                     <field name="title">
                         <label>Title</label>
