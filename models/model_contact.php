@@ -56,6 +56,25 @@ namespace adapt\contacts{
             
             return $output;
         }
+        public function mget_language_id(){
+            if ($this->_data['language_id']){
+                return $this->_data['language_id'];
+            }
+
+            $sql = $this->data_source->sql;
+
+            $sql->select('l.language_id')
+                ->from('language', 'l')
+                ->where('l.date_deleted', sql::IS, new sql_null())
+                ->order_by('l.language_id')
+                ->limit(1);
+
+            $result = $sql->execute()->results();
+            if (isset($result[0])) {
+                $this->_data['language_id'] = $result[0];
+            }
+            return $this->_data['language_id'];
+        }
         
         /*
          * Properties (Local)
