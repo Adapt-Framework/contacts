@@ -52,7 +52,7 @@
                         <data_type>bigint</data_type>
                         <lookup_table>country</lookup_table>
                     </field>
-                    <field name="language" key="foreign" referenced-table-name="language" referenced-field-name="language_id">
+                    <field name="language_id" key="foreign" referenced-table-name="language" referenced-field-name="language_id">
                         <label>Language #</label>
                         <data_type>bigint</data_type>
                         <lookup_table>language</lookup_table>
