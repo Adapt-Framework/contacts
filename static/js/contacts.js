@@ -9,7 +9,7 @@
         "select[name='contact\\[country_id\\]']",
         function(event){
             
-            alert('Update regional fields');
+//            alert('Update regional fields');
             
         }
     );
