@@ -56,6 +56,24 @@ namespace adapt\contacts{
             
             return $output;
         }
+        
+        public function pset_email($email){
+            $output = null;
+            
+            if ($this->is_loaded){
+                $children = $this->get();
+                
+                foreach($children as $child){
+                    if ($child instanceof \adapt\model && $child->table_name == "contact_email"){
+                        $child->email = $email;
+                        return true;
+                    }
+                }
+            }
+            
+            return false;
+        }
+        
         public function mget_language_id(){
             if ($this->_data['language_id']){
                 return $this->_data['language_id'];
