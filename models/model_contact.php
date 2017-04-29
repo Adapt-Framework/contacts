@@ -44,7 +44,7 @@ namespace adapt\contacts{
         public function mget_email(){
             $output = null;
             
-            if ($this->is_loaded){
+            //if ($this->is_loaded){
                 $children = $this->get();
                 
                 foreach($children as $child){
@@ -52,7 +52,7 @@ namespace adapt\contacts{
                         return $child->email;
                     }
                 }
-            }
+            //}
             
             return $output;
         }
