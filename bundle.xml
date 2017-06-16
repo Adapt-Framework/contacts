@@ -365,10 +365,10 @@
                 <page>
                     <section repeatable="No" layout="standard" title="Personal information">
                         <group layout="simple">
-                            <field type="Hidden" name="contact[contact_id]" label="Contact #" data-type="bigint" />
+                            <field type="Hidden" field-name="contact[contact_id]" label="Contact #" data-type="bigint" />
                         </group>
                         <group layout="simple">
-                            <field type="Select" name="contact[title]" label="Title" data-type="varchar">
+                            <field type="Select" field-name="contact[title]" label="Title" data-type="varchar">
                                 <allowed_values>
                                     <value>Mr</value>
                                     <value>Mrs</value>
@@ -378,31 +378,31 @@
                             </field>
                         </group>
                         <group layout="simple">
-                            <field type="Text" name="contact[forename]" label="Forename" data-type="name" />
+                            <field type="Text" field-name="contact[forename]" label="Forename" data-type="name" />
                         </group>
                         <group layout="simple">
-                            <field type="Text" name="contact[middle_name]" label="Middle name(s)" data-type="name" />
+                            <field type="Text" field-name="contact[middle_name]" label="Middle name(s)" data-type="name" />
                         </group>
                         <group layout="simple">
-                            <field type="Text" name="contact[surname]" label="Surname" data-type="name" />
+                            <field type="Text" field-name="contact[surname]" label="Surname" data-type="name" />
                         </group>
                         <group layout="simple">
-                            <field type="Text" name="contact[nickname]" label="Nickname" description="When provided the nickname will be used in place of the contacts full name" data-type="name" />
+                            <field type="Text" field-name="contact[nickname]" label="Nickname" description="When provided the nickname will be used in place of the contacts full name" data-type="name" />
                         </group>
                         <group layout="simple">
-                            <field type="Date of birth picker" name="contact[date_of_birth]" data-type="locales_date" label="Date of birth" />
+                            <field type="Date of birth picker" field-name="contact[date_of_birth]" data-type="locales_date" label="Date of birth" />
                         </group>
                         <group layout="simple">
-                            <field type="Select" name="contact[country_id]" data-type="bigint" label="Country" lookup-table="country" />
+                            <field type="Select" field-name="contact[country_id]" data-type="bigint" label="Country" lookup-table="country" />
                         </group>
                     </section>
                     <section repeatable="Yes" layout="2_col" title="Contact information">
                         <group layout="simple">
-                            <field type="Hidden" name="contact_email[contact_email_id][]" data-type="bigint" />
-                            <field type="Hidden" name="contact_email[contact_id][]" data-type="bigint" />
-                            <field type="Text" name="contact_email[email][]" data-type="email_address" label="Email">
-                                <addon type="Select" position="Before" name="contact_email[contact_email_type_id][]" lookup-table="contact_email_type" />
-                                <addon type="Button" position="After" label="Remove" name="control remove-section" />
+                            <field type="Hidden" field-name="contact_email[contact_email_id][]" data-type="bigint" />
+                            <field type="Hidden" field-name="contact_email[contact_id][]" data-type="bigint" />
+                            <field type="Text" field-name="contact_email[email][]" data-type="email_address" label="Email">
+                                <addon type="Select" position="Before" field-name="contact_email[contact_email_type_id][]" lookup-table="contact_email_type" />
+                                <addon type="Button" position="After" field-label="Remove" name="control remove-section" />
                             </field>
                             
                         </group>
