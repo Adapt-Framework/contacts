@@ -19,7 +19,7 @@
             </bundle>
             <bundle>
                 <name>locales</name>
-                <version>1.0</version>
+                <version>0.8</version>
             </bundle>
             <bundle>
                 <name>forms</name>
@@ -27,7 +27,7 @@
             </bundle>
             <bundle>
                 <name>form_datetime_picker</name>
-                <version>1.0</version>
+                <version>0.8</version>
             </bundle>
             <bundle>
                 <name>bootstrap_views</name>
@@ -43,7 +43,7 @@
             </bundle>
             <bundle>
                 <name>language</name>
-                <version>1</version>
+                <version>0.7</version>
             </bundle>
         </depends_on>
         <schema>
