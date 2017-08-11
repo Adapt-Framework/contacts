@@ -83,7 +83,9 @@ namespace adapt\contacts{
 
             $sql->select('l.language_id')
                 ->from('language', 'l')
-                ->where('l.date_deleted', sql::IS, new sql_null())
+                ->where(
+                        new sql_cond('l.date_deleted', sql::IS, new sql_null())
+                    )
                 ->order_by('l.language_id')
                 ->limit(1);
 
