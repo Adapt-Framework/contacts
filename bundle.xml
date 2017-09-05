@@ -4,7 +4,7 @@
         <name>contacts</name>
         <label>Adapt Contacts</label>
         <type>extension</type>
-        <version>0.5.0</version>
+        <version>0.5.1</version>
         <namespace>\adapt\contacts</namespace>
         <version_status>release</version_status>
         <availability>public</availability>
